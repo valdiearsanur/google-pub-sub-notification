@@ -24,13 +24,15 @@ ln -s /opt/nodejs/bin/npm /usr/bin/npm
 # Get the application source code from the Google Cloud Repository.
 # git requires $HOME and it's not set during the startup script.
 export HOME=/root
-export TOPIC_ID=$(GCP_PROJECT_ID)/topics/pubsub
-export SUBSCRIPTION_ID=$(GCP_PROJECT_ID)/subscriptions/pubsub-sub
 git config --global credential.helper gcloud.sh
 git clone ${REPOSITORY_URL} /opt/app/new-repo
 
 # Install app dependencies
 cd /opt/app/new-repo
+cat > .env <<EOL
+export TOPIC_ID=${GCP_PROJECT_ID}/topics/pubsub
+export SUBSCRIPTION_ID=${GCP_PROJECT_ID}/subscriptions/pubsub-sub
+EOL
 npm install
 
 # Create a nodeapp user. The application will run as this user.
