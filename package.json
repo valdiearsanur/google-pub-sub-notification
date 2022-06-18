@@ -1,0 +1,24 @@
+{
+  "name": "google-pub-sub-notification",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valdiearsanur/google-pub-sub-notification.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/valdiearsanur/google-pub-sub-notification/issues"
+  },
+  "homepage": "https://github.com/valdiearsanur/google-pub-sub-notification#readme",
+  "dependencies": {
+    "@google-cloud/pubsub": "^3.0.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
+  }
+}
