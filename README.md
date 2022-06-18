@@ -34,6 +34,7 @@ If this is your fist development. I encourage you to use NVM by following the st
 1. Then, create instance using script below. The instance creation will require startup script located in this repository.
 
 ```
+cd google-pub-sub-notification
 gcloud compute instances create node-instance \
     --machine-type=e2-micro \
     --preemptible \
@@ -41,7 +42,7 @@ gcloud compute instances create node-instance \
     --boot-disk-type=pd-standard \
     --zone us-central1-f \
     --scopes userinfo-email,cloud-platform \
-    --metadata-from-file startup-script=google-pub-sub-notification/compute-engine-script.sh
+    --metadata-from-file startup-script=compute-engine-script.sh
 ```
 
 1. App will be running on port 3000. We need to setup a firewall rule in order to allow traffic from the port 3000

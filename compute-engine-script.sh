@@ -30,8 +30,8 @@ git clone ${REPOSITORY_URL} /opt/app/new-repo
 # Install app dependencies
 cd /opt/app/new-repo
 cat > .env <<EOL
-export TOPIC_ID=${GCP_PROJECT_ID}/topics/pubsub
-export SUBSCRIPTION_ID=${GCP_PROJECT_ID}/subscriptions/pubsub-sub
+export TOPIC_ID=projects/${GCP_PROJECT_ID}/topics/pubsub
+export SUBSCRIPTION_ID=projects/${GCP_PROJECT_ID}/subscriptions/pubsub-sub
 EOL
 npm install
 
