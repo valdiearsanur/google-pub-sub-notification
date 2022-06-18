@@ -26,3 +26,7 @@ If this is your fist development. I encourage you to use NVM by following the st
 
 1. Run the application `npm run start`
 
+
+## Deploymeny Guideline on Compute Engine
+
+See Reference : https://cloud.google.com/nodejs/getting-started/getting-started-on-compute-engine
