@@ -9,8 +9,8 @@ REPOSITORY_URL=https://github.com/valdiearsanur/google-pub-sub-notification.git
 # Install logging monitor. The monitor will automatically pick up logs sent to
 # syslog.
 # (it will coss us on log service)
-# curl -s "https://storage.googleapis.com/signals-agents/logging/google-fluentd-install.sh" | bash
-# service google-fluentd restart &
+curl -s "https://storage.googleapis.com/signals-agents/logging/google-fluentd-install.sh" | bash
+service google-fluentd restart &
 
 # Install dependencies from apt
 apt-get update
@@ -39,3 +39,21 @@ npm install
 # Create a nodeapp user. The application will run as this user.
 useradd -m -d /home/nodeapp nodeapp
 chown -R nodeapp:nodeapp /opt/app
+
+# Configure supervisor to run the node app.
+cat >/etc/supervisor/conf.d/node-app.conf << EOF
+[program:nodeapp]
+directory=/opt/app/new-repo
+command=node notification.js
+autostart=true
+autorestart=true
+user=nodeapp
+environment=HOME="/home/nodeapp",USER="nodeapp",NODE_ENV="production"
+stdout_logfile=syslog
+stderr_logfile=syslog
+EOF
+
+supervisorctl reread
+supervisorctl update
+
+# Application should now be running under supervisor
