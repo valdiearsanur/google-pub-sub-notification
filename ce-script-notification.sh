@@ -36,19 +36,19 @@ export SUBSCRIPTION_ID=projects/${GCP_PROJECT_ID}/subscriptions/pubsub-sub
 EOL
 npm install
 
-# Create a nodeapp user. The application will run as this user.
-useradd -m -d /home/nodeapp nodeapp
-chown -R nodeapp:nodeapp /opt/app
+# Create a nodenotif user. The application will run as this user.
+useradd -m -d /home/nodenotif nodenotif
+chown -R nodenotif:nodenotif /opt/app
 
 # Configure supervisor to run the node app.
 cat >/etc/supervisor/conf.d/node-app.conf << EOF
-[program:nodeapp]
+[program:nodenotif]
 directory=/opt/app/new-repo
 command=node notification.js
 autostart=true
 autorestart=true
-user=nodeapp
-environment=HOME="/home/nodeapp",USER="nodeapp",NODE_ENV="production"
+user=nodenotif
+environment=HOME="/home/nodenotif",USER="nodenotif",NODE_ENV="production"
 stdout_logfile=syslog
 stderr_logfile=syslog
 EOF
