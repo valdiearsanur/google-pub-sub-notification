@@ -29,39 +29,4 @@ If this is your fist development. I encourage you to use NVM by following the st
 
 ## Deployment Guideline on Compute Engine
 
-1. In cloud shell, clone this repository
-
-1. Then, create instance using script below. The instance creation will require startup script located in this repository.
-
-```
-cd google-pub-sub-notification
-gcloud compute instances create node-instance \
-    --machine-type=e2-micro \
-    --preemptible \
-    --boot-disk-size=10GB \
-    --boot-disk-type=pd-standard \
-    --zone us-central1-f \
-    --scopes userinfo-email,cloud-platform \
-    --metadata-from-file startup-script=compute-engine-script.sh
-```
-
-1. App will be running on port 3000. We need to setup a firewall rule in order to allow traffic from the port 3000
-
-```
-gcloud compute firewall-rules create default-allow-http-3000 \
-    --allow tcp:3000 \
-    --source-ranges 0.0.0.0/0 \
-    --target-tags http-server \
-    --description "Allow port 3000 access to http-server"
-```
-
-1. Make a request by using curl.
-
-```
-curl -i POST http://<VM-EXTERNAL-IP>:3000/registration/ \
-    -H 'Content-Type: application/json' \
-    -d '{"name":"john1","email":"john1@example.com", "password":"1234"}'
-```
-
-
-See Reference : https://cloud.google.com/nodejs/getting-started/getting-started-on-compute-engine
+See Reference : https://medium.com/@mvaldiearsanur/publish-and-receive-google-pub-sub-message-in-node-js-a34504db2844
