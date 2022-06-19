@@ -6,7 +6,7 @@ dotenv.config()
 const pubSubClient = new PubSub()
 const subscriptionId = process.env.SUBSCRIPTION_ID
 const subscription = pubSubClient.subscription(subscriptionId)
-const timeout = 60
+const timeout = 120
 
 function listenForMessages() {
     let messageCount = 0
